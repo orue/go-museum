@@ -7,6 +7,8 @@ import (
 
 	"orue.io/go/museum/api"
 	"orue.io/go/museum/data"
+
+	"github.com/gin-gonic/gin"
 )
 
 func handleHello(w http.ResponseWriter, r *http.Request) {
@@ -24,6 +26,14 @@ func handleTemplate(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	r := gin.Default()
+	r.GET("/ping", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong",
+		})
+	})
+	r.Run() // listen and serve on 0.0.0.0:8080
+
 	server := http.NewServeMux()
 	server.HandleFunc("/hello", handleHello)
 	server.HandleFunc("/templates", handleTemplate)
