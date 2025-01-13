@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"net/http"
 
+	"orue.io/go/museum/api"
 	"orue.io/go/museum/data"
 )
 
@@ -26,6 +27,7 @@ func main() {
 	server := http.NewServeMux()
 	server.HandleFunc("/hello", handleHello)
 	server.HandleFunc("/templates", handleTemplate)
+	server.HandleFunc("/api/exhibitions", api.Get)
 
 	fs := http.FileServer(http.Dir("./public"))
 	server.Handle("/", fs)
