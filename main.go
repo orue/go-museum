@@ -19,7 +19,7 @@ func handleTemplate(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Internal Server Error"))
 		return
 	}
-	html.Execute(w, data.GetAll()[0])
+	html.Execute(w, data.GetAll())
 }
 
 func main() {
